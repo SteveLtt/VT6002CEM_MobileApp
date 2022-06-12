@@ -2,6 +2,7 @@ package com.example.mobileapp_;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,5 +26,9 @@ public class DetailActivity extends AppCompatActivity {
 
         detail_image.setImageResource(R.drawable.umbrella);
 
+    }
+    private void back(){
+        Intent i=new Intent(this, MapsActivity.class);
+        this.startActivity(i);
     }
 }
