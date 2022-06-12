@@ -1,8 +1,12 @@
 package com.example.mobileapp_;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +26,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     RecentsAdapter recentsAdapter;
     SharedPreferences sp;
     ImageView scann;
+
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -113,17 +123,59 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(i);
     }
     public void login(View v){
+
+
+
+
         sp = getApplicationContext().getSharedPreferences("User",MODE_PRIVATE);
         String id = sp.getString("id","");
-        if(id != null){
-            Toast.makeText(MainActivity.this,"logined",Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-
-        }else{
-            Intent i=new Intent(this, LoginActivity.class);
-            this.startActivity(i);
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate()){
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(getApplicationContext(),"Device Doesn't have fingerprint",Toast.LENGTH_LONG).show();
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Toast.makeText(getApplicationContext(),"Not working",Toast.LENGTH_LONG).show();
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(getApplicationContext(),"No FingerPrint Assigned",Toast.LENGTH_LONG).show();
         }
+
+        Executor executor = ContextCompat.getMainExecutor(this);
+
+        biometricPrompt = new BiometricPrompt(MainActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                if(id != null){
+                    Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
+
+                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+
+                }else{
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                }
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                Toast.makeText(MainActivity.this,"Login failed, Please login again",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Login")
+                .setDescription("Use FingerPrint To Login").setDeviceCredentialAllowed(true).build();
+
+        biometricPrompt.authenticate(promptInfo);
+
+
+
 
     }
 
