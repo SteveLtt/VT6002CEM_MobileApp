@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recentsDataList.add(new RecentsData("Collapsible umbrella","Type:Manual","$300",R.drawable.collapsible_umbrella));
         recentsDataList.add(new RecentsData("Umbrella","Type:Manual","$400",R.drawable.umbrella));
         recentsDataList.add(new RecentsData("Oil paper umbrella","Type:Automatic","$150",R.drawable.oil_paper_umbrella));
-        recentsDataList.add(new RecentsData("Parasol","Type:Manual","$400",R.drawable.parasol));
-        recentsDataList.add(new RecentsData("Hand-crafted umbrellas","Type:Manual","$500",R.drawable.hand_crafted_umbrellas));
+
 
         setRecentRecycler(recentsDataList);
 
