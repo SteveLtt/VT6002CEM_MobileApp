@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
          TextView EditTextdesc = (TextView)findViewById(R.id.deatil_desc);
 
         mQueue = Volley.newRequestQueue(this);
-        String url = "https://api.employeasy.hk/api/get_detail_a.php?id="+name;
+        String url = "http://api.employeasy.hk/api/get_detail_a.php?id="+name;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
