@@ -321,7 +321,7 @@ public class MainActivityTest {
                                         0),
                                 7),
                         isDisplayed()));
-        materialButton4.perform(click())
+        materialButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(
