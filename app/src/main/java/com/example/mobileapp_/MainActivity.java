@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else{
             //fingerprint login
-
+            Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
 
             BiometricManager biometricManager = BiometricManager.from(this);
             switch (biometricManager.canAuthenticate()){
