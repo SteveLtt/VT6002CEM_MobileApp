@@ -47,8 +47,7 @@ public class DetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-//                            String a = response.getString("name");
-//                            Log.d("nameJson",a);
+
                             JSONArray jsonArray = response.getJSONArray("detail");
 
 
@@ -60,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
                                 Log.d("nameJson",name);
                                 Log.d("descJson",desc);
                                 Log.d("photo",photo);
-                                //
+
                                 EditTextname.setText(nameq);
                                 EditTextdesc.setText(desc);
 
