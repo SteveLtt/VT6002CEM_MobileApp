@@ -130,7 +130,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@drawable/hotel"
+            app:srcCompat="@drawable/location"
             android:onClick="map"/>
 
         <ImageView

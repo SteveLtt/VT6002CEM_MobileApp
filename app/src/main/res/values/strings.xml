@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MobileApp-</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="default_info_title">123</string>
+    <string name="default_info_snippet">12333</string>
+    <string name="pick_place">pick</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="title_activity_test_map">TestMap</string>
 </resources>
