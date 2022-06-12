@@ -45,11 +45,12 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
         holder.price.setText(recentsDataList.get(position).getPrice());
         holder.placeImage.setImageResource(recentsDataList.get(position).getImageUrl());
 
-
+        String name = recentsDataList.get(position).getUmbrellaName();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(context, DetailActivity.class);
+                i.putExtra("name",name);
                 context.startActivity(i);
             }
         });

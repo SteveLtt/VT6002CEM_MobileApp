@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(
                 MainActivity.this
                 );
-                intentIntegrator.setPrompt("For flash use volume up key");
+                intentIntegrator.setPrompt("Please scan the QR code");
                 intentIntegrator.setBarcodeImageEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
