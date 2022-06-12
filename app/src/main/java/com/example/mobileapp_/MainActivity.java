@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recentRecycler;
     RecentsAdapter recentsAdapter;
-
+    SharedPreferences sp;
     ImageView scann;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +113,18 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(i);
     }
     public void login(View v){
-        Intent i=new Intent(this, LoginActivity.class);
-        this.startActivity(i);
+        sp = getApplicationContext().getSharedPreferences("User",MODE_PRIVATE);
+        String id = sp.getString("id","");
+        if(id != null){
+            Toast.makeText(MainActivity.this,"logined",Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+
+        }else{
+            Intent i=new Intent(this, LoginActivity.class);
+            this.startActivity(i);
+        }
+
     }
 
 

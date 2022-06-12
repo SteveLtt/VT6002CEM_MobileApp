@@ -3,6 +3,8 @@ package com.example.mobileapp_;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String UserId;
 
-
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView emailTextView = (TextView) findViewById(R.id.email_value);
         final TextView nameTextView = (TextView) findViewById(R.id.name_value);
         final TextView ageTextView = (TextView) findViewById(R.id.age_value);
-
+        sp = getSharedPreferences("User", Context.MODE_PRIVATE);
 
         reference.child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -55,6 +57,11 @@ public class ProfileActivity extends AppCompatActivity {
                     nameTextView.setText(name);
                     emailTextView.setText(email);
                     ageTextView.setText(age);
+
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("id",UserId);
+                    editor.commit();
+                    Toast.makeText(ProfileActivity.this,"saved",Toast.LENGTH_LONG).show();
                 }
             }
 
