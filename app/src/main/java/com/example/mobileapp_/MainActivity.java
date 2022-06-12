@@ -47,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<RecentsData> recentsDataList = new ArrayList<>();
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
+        recentsDataList.add(new RecentsData("Automatic umbrellas","Type:Automatic","$200",R.drawable.automatic_umbrellas));
+        recentsDataList.add(new RecentsData("Collapsible umbrella","Type:Manual","$300",R.drawable.collapsible_umbrella));
+        recentsDataList.add(new RecentsData("Umbrella","Type:Manual","$400",R.drawable.umbrella));
+        recentsDataList.add(new RecentsData("Oil paper umbrella","Type:Automatic","$150",R.drawable.oil_paper_umbrella));
+        recentsDataList.add(new RecentsData("Parasol","Type:Manual","$400",R.drawable.parasol));
+        recentsDataList.add(new RecentsData("Hand-crafted umbrellas","Type:Manual","$500",R.drawable.hand_crafted_umbrellas));
 
         setRecentRecycler(recentsDataList);
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     MainActivity.this
             );
-            builder.setTitle("Resu;t");
+            builder.setTitle("Result");
             builder.setMessage(intentResult.getContents());
 
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -130,49 +130,53 @@ public class MainActivity extends AppCompatActivity {
         sp = getApplicationContext().getSharedPreferences("User",MODE_PRIVATE);
         String id = sp.getString("id","");
 
-        BiometricManager biometricManager = BiometricManager.from(this);
-        switch (biometricManager.canAuthenticate()){
-            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(getApplicationContext(),"Device Doesn't have fingerprint",Toast.LENGTH_LONG).show();
-            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toast.makeText(getApplicationContext(),"Not working",Toast.LENGTH_LONG).show();
-            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(getApplicationContext(),"No FingerPrint Assigned",Toast.LENGTH_LONG).show();
-        }
+        if(id == ""){
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
 
-        Executor executor = ContextCompat.getMainExecutor(this);
+        }else{
 
-        biometricPrompt = new BiometricPrompt(MainActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
+            Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
+
+            BiometricManager biometricManager = BiometricManager.from(this);
+            switch (biometricManager.canAuthenticate()){
+                case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                    Toast.makeText(getApplicationContext(),"Device Doesn't have fingerprint",Toast.LENGTH_LONG).show();
+                case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                    Toast.makeText(getApplicationContext(),"Not working",Toast.LENGTH_LONG).show();
+                case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                    Toast.makeText(getApplicationContext(),"No FingerPrint Assigned",Toast.LENGTH_LONG).show();
             }
 
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                if(id != null){
-                    Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
+            Executor executor = ContextCompat.getMainExecutor(this);
 
+            biometricPrompt = new BiometricPrompt(MainActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+                @Override
+                public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                    super.onAuthenticationError(errorCode, errString);
+                }
+
+                @Override
+                public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
                     startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 
-                }else{
+                }
+
+                @Override
+                public void onAuthenticationFailed() {
+                    super.onAuthenticationFailed();
+                    Toast.makeText(MainActivity.this,"Login failed, Please login again",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }
-            }
+            });
 
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                Toast.makeText(MainActivity.this,"Login failed, Please login again",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            }
-        });
+            promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Login")
+                    .setDescription("Use FingerPrint To Login").setDeviceCredentialAllowed(true).build();
 
-        promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Login")
-                .setDescription("Use FingerPrint To Login").setDeviceCredentialAllowed(true).build();
+            biometricPrompt.authenticate(promptInfo);
+        }
 
-        biometricPrompt.authenticate(promptInfo);
+
 
 
 

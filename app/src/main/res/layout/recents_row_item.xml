@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/recentimage1" />
 
     <TextView
-        android:id="@+id/place_name"
+        android:id="@+id/Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -31,13 +31,13 @@
         app:layout_constraintTop_toBottomOf="@+id/place_image" />
 
     <TextView
-        android:id="@+id/country_name"
+        android:id="@+id/UmbrellaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="India"
-        app:layout_constraintStart_toStartOf="@+id/place_name"
-        app:layout_constraintTop_toBottomOf="@+id/place_name" />
+        app:layout_constraintStart_toStartOf="@+id/Type"
+        app:layout_constraintTop_toBottomOf="@+id/Type" />
 
     <TextView
         android:id="@+id/price"
@@ -47,6 +47,6 @@
         android:layout_marginBottom="16dp"
         android:text="From $200"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/country_name"
-        app:layout_constraintTop_toBottomOf="@+id/country_name" />
+        app:layout_constraintStart_toStartOf="@+id/UmbrellaName"
+        app:layout_constraintTop_toBottomOf="@+id/UmbrellaName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

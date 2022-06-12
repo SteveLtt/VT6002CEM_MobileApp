@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileapp_.DetailActivity;
 import com.example.mobileapp_.MapsActivity;
 import com.example.mobileapp_.R;
 import com.example.mobileapp_.model.RecentsData;
@@ -39,8 +40,8 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
 
     @Override
     public void onBindViewHolder(@NonNull RecentsViewHolder holder, int position) {
-        holder.countryName.setText(recentsDataList.get(position).getCountryName());
-        holder.placeName.setText(recentsDataList.get(position).getPlaceName());
+        holder.UmbrellaName.setText(recentsDataList.get(position).getUmbrellaName());
+        holder.Type.setText(recentsDataList.get(position).getType());
         holder.price.setText(recentsDataList.get(position).getPrice());
         holder.placeImage.setImageResource(recentsDataList.get(position).getImageUrl());
 
@@ -48,7 +49,7 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(context, MapsActivity.class);
+                Intent i=new Intent(context, DetailActivity.class);
                 context.startActivity(i);
             }
         });
@@ -63,14 +64,14 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
     public static final class RecentsViewHolder extends RecyclerView.ViewHolder{
 
         ImageView placeImage;
-        TextView placeName, countryName, price;
+        TextView Type, UmbrellaName, price;
 
         public RecentsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             placeImage = itemView.findViewById(R.id.place_image);
-            placeName = itemView.findViewById(R.id.place_name);
-            countryName = itemView.findViewById(R.id.country_name);
+            Type = itemView.findViewById(R.id.Type);
+            UmbrellaName = itemView.findViewById(R.id.UmbrellaName);
             price = itemView.findViewById(R.id.price);
         }
     }

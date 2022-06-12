@@ -1,8 +1,25 @@
 package com.example.mobileapp_.model;
 
 public class RecentsData {
-    String placeName;
-    String CountryName;
+    String umbrellaName;
+
+    public String getUmbrellaName() {
+        return umbrellaName;
+    }
+
+    public void setUmbrellaName(String umbrellaName) {
+        this.umbrellaName = umbrellaName;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        this.Type = type;
+    }
+
+    String Type;
     String price;
 
     Integer imageUrl;
@@ -15,28 +32,14 @@ public class RecentsData {
         this.imageUrl = imageUrl;
     }
 
-    public RecentsData(String placeName, String countryName, String price, Integer imageUrl) {
-        this.placeName = placeName;
-        this.CountryName = countryName;
+    public RecentsData(String umbrellaName, String Type, String price, Integer imageUrl) {
+        this.umbrellaName = umbrellaName;
+        this.Type = Type;
         this.price = price;
         this.imageUrl = imageUrl;
     }
 
-    public String getPlaceName() {
-        return placeName;
-    }
 
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName;
-    }
-
-    public String getCountryName() {
-        return CountryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.CountryName = countryName;
-    }
 
     public String getPrice() {
         return price;
