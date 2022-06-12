@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
         recentsAdapter = new RecentsAdapter(this, recentsDataList);
         recentRecycler.setAdapter(recentsAdapter);
     }
-
+    //direct to map page
     public void map(View v){
         Intent i=new Intent(this, MapsActivity.class);
         this.startActivity(i);
     }
-
+    //direct to detail page
     public void detail(View v){
         Intent i=new Intent(this, DetailActivity.class);
         this.startActivity(i);
