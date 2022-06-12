@@ -78,16 +78,31 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            Toast.makeText(RegisterActivity.this, "signInWithEmail:success",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                            User user = new User(username,userage,useremail);
 
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        Toast.makeText(RegisterActivity.this, "signInWithEmail:success",
+                                                Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+
+
+
+                        }
                     }
                 });
     }
