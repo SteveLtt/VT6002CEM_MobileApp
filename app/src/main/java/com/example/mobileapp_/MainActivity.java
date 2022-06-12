@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i=new Intent(this, DetailActivity.class);
         this.startActivity(i);
     }
+    //direct to login page
     public void login(View v){
 
 
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
 
         }else{
-
+            //fingerprint login
             Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
 
             BiometricManager biometricManager = BiometricManager.from(this);
