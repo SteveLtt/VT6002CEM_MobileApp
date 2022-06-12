@@ -28,6 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+
+
+
+//Leung Tsz To
+//Stu id: 217013486
+//Mobile app assignment
+
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recentRecycler;
