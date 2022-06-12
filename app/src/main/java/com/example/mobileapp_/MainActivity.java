@@ -34,6 +34,7 @@ import java.util.concurrent.Executor;
 //Leung Tsz To
 //Stu id: 217013486
 //Mobile app assignment
+//VT6002CEM-Assignment-2-
 
 public class MainActivity extends AppCompatActivity {
 
