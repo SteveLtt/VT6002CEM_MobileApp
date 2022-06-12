@@ -135,6 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             polylineOptions.geodesic(true);
                         }
                         mMap.addPolyline(polylineOptions);
+                        //mark points
                         mMap.addMarker(new MarkerOptions().position(new LatLng(lastLacation.getLatitude(), lastLacation.getLongitude())).title("Your location"));
                         mMap.addMarker(new MarkerOptions().position(new LatLng(22.312668960717374, 114.22520054626735)).title("Shop"));
 
@@ -163,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestQueue.add(jsonObjectRequest);
 
     }
-
+    //decodePoly
     private List<LatLng> decodePoly(String encoded) {
         List<LatLng> poly = new ArrayList<>();
         int index = 0, len = encoded.length();
