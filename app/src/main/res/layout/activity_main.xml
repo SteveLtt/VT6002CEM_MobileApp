@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="180dp"
         android:background="@drawable/home_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -68,12 +68,12 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Recent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView4"
@@ -91,8 +91,10 @@
         android:id="@+id/recent_recycler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:background="#F5F7F7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -118,27 +120,35 @@
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/home"
             app:srcCompat="@drawable/flights"
-            android:onClick="detail"/>
+            android:onClick="login"/>
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/home"
             app:srcCompat="@drawable/hotel"
             android:onClick="map"/>
 
         <ImageView
+            android:id="@+id/scann"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/home"
             app:srcCompat="@drawable/flights" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="346dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:text="The app is for traditional handmade umbrellas and includes information on different varieties of umbrellas and how to construct them. Also offers a customizable service that allows consumers to tailor their umbrellas to their specific needs. "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
